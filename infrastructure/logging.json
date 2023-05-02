@@ -4,9 +4,14 @@
     "parameters": {
         "logAnalyticsName": {
             "type": "string",
-            "defaultValue": "logAnalyticsWorkspace1",
             "metadata": {
                 "description": "Name of the Log Analytics Workspace"
+            }
+        },
+        "applicationInsightsName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Application Insights"
             }
         }
     },
@@ -24,6 +29,19 @@
                 },
                 "publicNetworkAccessForIngestion": "Enabled",
                 "publicNetworkAccessForQuery": "Enabled"
+            }
+        },
+        {
+            "name": "[parameters('applicationInsightsName')]",
+            "type": "microsoft.insights/components",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2020-02-02-preview",
+            "dependsOn": [],
+            "properties": {
+                "ApplicationId": "[parameters('applicationInsightsName')]",
+                "Application_Type": "web",
+                "Request_Source": "rest",
+                "WorkspaceResourceId": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('logAnalyticsName'))]"
             }
         }
     ],

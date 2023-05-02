@@ -4,6 +4,9 @@
     "parameters": {
         "logAnalyticsName": {
             "value": "law-we-han"
+        },
+        "applicationInsightsName":{
+            "value": "ais-we-han"
         }
     }
 }
