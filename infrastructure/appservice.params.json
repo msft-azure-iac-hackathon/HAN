@@ -7,6 +7,18 @@
         },
         "appServiceName":{
             "value": "app-we-han"
+        },
+        "kind":{
+            "value": "linux"
+        },
+        "linuxFxVersion":{
+            "value": "DOTNETCORE|7.0"
+        },
+        "sku": {
+            "value": {
+                "Tier": "Standard",
+                "Name": "S1"
+            }
         }
     }
 }
