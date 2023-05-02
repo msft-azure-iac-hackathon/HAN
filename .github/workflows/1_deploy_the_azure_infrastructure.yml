@@ -77,4 +77,4 @@ jobs:
           parameters: >
             infrastructure/database.params.json
             keyVaultId="${{ steps.keyVault.outputs.keyVaultId }}",
-            sqlServerAdminObjectId='${{ steps.appService.outputs.appServiceSystemAssignedIdentity }}'
+            sqlServerAdminObjectId="${{ steps.appService.outputs.appServiceSystemAssignedIdentity }}"
