@@ -8,10 +8,7 @@
         "sqlDatabaseName": {
             "type": "string"
         },
-        "managedIdentityName": {
-            "type": "string"
-        },
-        "managedIdentityObjectId": {
+        "sqlServerAdminObjectId": {
             "type": "string"
         },
         "keyVaultId": {
@@ -38,8 +35,7 @@
                     "principalType": "Application",
                     "tenantId": "[subscription().tenantId]",
                     "azureADOnlyAuthentication": true,
-                    "login": "[parameters('managedIdentityName')]",
-                    "sid": "[parameters('managedIdentityObjectId')]"
+                    "sid": "[parameters('sqlServerAdminObjectId')]"
 
                 }
             }

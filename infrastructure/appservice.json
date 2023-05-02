@@ -158,13 +158,9 @@
         }
     ],
     "outputs": {
-        "managedIdentityName": {
+        "appServiceSystemAssignedIdentity": {
             "type": "string",
-            "value": "[parameters('managedIdentityName')]"
-        },
-        "managedIdentityObjectId": {
-            "type": "string",
-            "value": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('managedIdentityName')), '2018-11-30').principalId]"
+            "value": "[reference(resourceId('Microsoft.Web/sites',parameters('appServiceName')), '2022-03-01').identity.principalId]"
         }
     }
 }
