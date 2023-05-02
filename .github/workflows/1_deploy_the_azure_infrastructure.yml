@@ -1,0 +1,21 @@
+name: Deploy the Azure Infrastructure
+
+on:
+  workflow_call:
+
+jobs:
+  core-infrastructure-rollout:
+    runs-on: [self-hosted, linux]
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      
+      - uses: azure/login@v1
+        name: Azure OIDC login
+        with:         
+          tenant-id: ${{ secrets.TENANT_ID }}
+          client-id: ${{ secrets.CLIENT_ID }}
+          allow-no-subscriptions: true
+          enable-AzPSSession: true

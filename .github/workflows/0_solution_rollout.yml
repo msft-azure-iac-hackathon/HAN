@@ -1,0 +1,10 @@
+name: Solution Rollout
+on:
+  push:
+      branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy_the_azure_infrastructure:
+      uses: ./.github/workflows/1_deploy_the_azure_infrastructure.yml
+      secrets: inherit
