@@ -8,6 +8,9 @@
         "sqlDatabaseName": {
             "type": "string"
         },
+        "sqlServerLogin": {
+            "type": "string"
+        },
         "sqlServerAdminObjectId": {
             "type": "string"
         },
@@ -36,7 +39,7 @@
                     "tenantId": "[subscription().tenantId]",
                     "azureADOnlyAuthentication": true,
                     "sid": "[parameters('sqlServerAdminObjectId')]",
-                    "login": "app-we-han"
+                    "login": "[parameters('sqlServerLogin')]"
                 }
             }
         }

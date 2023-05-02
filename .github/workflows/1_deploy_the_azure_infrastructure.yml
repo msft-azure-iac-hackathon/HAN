@@ -78,3 +78,4 @@ jobs:
             infrastructure/database.params.json
             keyVaultId="${{ steps.keyVault.outputs.keyVaultId }}",
             sqlServerAdminObjectId="${{ steps.appService.outputs.appServiceSystemAssignedIdentity }}"
+            sqlServerLogin=${{ steps.appservice.outputs.appServiceName }}

@@ -161,6 +161,10 @@
         "appServiceSystemAssignedIdentity": {
             "type": "string",
             "value": "[reference(resourceId('Microsoft.Web/sites', parameters('appServiceName')), '2022-03-01', 'Full').identity.principalId]"
+        },
+        "appServiceName": {
+            "type": "string",
+            "value": "[parameters('appServiceName')]"
         }
     }
 }
