@@ -35,7 +35,7 @@
             "name": "[parameters('applicationInsightsName')]",
             "type": "microsoft.insights/components",
             "location": "[resourceGroup().location]",
-            "apiVersion": "2020-02-02-preview",
+            "apiVersion": "2020-02-02",
             "dependsOn": [],
             "properties": {
                 "ApplicationId": "[parameters('applicationInsightsName')]",
@@ -45,5 +45,22 @@
             }
         }
     ],
-    "outputs": {}
+    "outputs": {
+        "logAnalyticsResourceId": {
+            "type": "string",
+            "value": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('logAnalyticsName'))]"
+        },
+        "applicationInsightsResourceId": {
+            "type": "string",
+            "value": "[resourceId('microsoft.insights/components', parameters('applicationInsightsName'))]"
+        },
+        "applicationInsightsInstrumentationKey": {
+            "type": "string",
+            "value": "[reference(resourceId('microsoft.insights/components', parameters('applicationInsightsName')), '2020-02-02').InstrumentationKey]"
+        },
+        "applicationInsightsConnectionString": {
+            "type": "string",
+            "value": "[reference(resourceId('microsoft.insights/components', parameters('applicationInsightsName')), '2020-02-02').ConnectionString]"
+        }
+    }
 }
