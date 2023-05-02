@@ -35,8 +35,8 @@
                     "principalType": "Application",
                     "tenantId": "[subscription().tenantId]",
                     "azureADOnlyAuthentication": true,
-                    "sid": "[parameters('sqlServerAdminObjectId')]"
-
+                    "sid": "[parameters('sqlServerAdminObjectId')]",
+                    "login": "app-we-han"
                 }
             }
         }
