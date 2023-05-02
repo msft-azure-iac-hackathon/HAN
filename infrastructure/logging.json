@@ -14,7 +14,7 @@
     "variables": {},
     "resources": [
         {
-            "name": "parameters('logAnalyticsName')",
+            "name": "[parameters('logAnalyticsName')]",
             "type": "Microsoft.OperationalInsights/workspaces",
             "apiVersion": "2021-12-01-preview",
             "location": "[resourceGroup().location]",
