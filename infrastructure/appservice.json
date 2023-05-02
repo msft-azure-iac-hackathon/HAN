@@ -157,5 +157,14 @@
             }
         }
     ],
-    "outputs": {}
+    "outputs": {
+        "managedIdentityName": {
+            "type": "string",
+            "value": "[parameters('managedIdentityName')]"
+        },
+        "managedIdentityObjectId": {
+            "type": "string",
+            "value": "[reference(resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('managedIdentityName')), '2018-11-30').principalId]"
+        }
+    }
 }

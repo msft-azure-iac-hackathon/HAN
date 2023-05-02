@@ -65,3 +65,17 @@ jobs:
             appInsightsInstrumentationKey="${{ steps.logging.outputs.applicationInsightsInstrumentationKey }}"
             appInsightsConnectionString="${{ steps.logging.outputs.applicationInsightsConnectionString }}"
             keyVaultId="${{ steps.keyVault.outputs.keyVaultId }}"
+
+      - uses: azure/arm-deploy@v1 
+        name: Create the SQL Server and Database
+        id: Database
+        with:
+          scope: resourcegroup
+          region: westeurope
+          resourceGroupName: ${{ steps.resourceGroup.outputs.resourceGroupName }}
+          template: infrastructure/database.json
+          parameters: >
+            infrastructure/database.params.json
+            keyVaultId="${{ steps.keyVault.outputs.keyVaultId }}",
+            managedIdentityName="${{ steps.appService.outputs.managedIdentityName }}",
+            managedIdentityObjectId='${{ steps.appService.outputs.managedIdentityObjectId }}'

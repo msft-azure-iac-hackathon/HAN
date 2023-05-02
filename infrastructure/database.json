@@ -1,0 +1,49 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sqlServerName": {
+            "type": "string"
+        },
+        "sqlDatabaseName": {
+            "type": "string"
+        },
+        "managedIdentityName": {
+            "type": "string"
+        },
+        "managedIdentityObjectId": {
+            "type": "string"
+        },
+        "keyVaultId": {
+            "type": "string",
+            "metadata": {
+                "description": "Id of the Key Vault"
+            }
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Sql/servers",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2021-05-01-preview",
+            "name": "[parameters('sqlServerName')]",
+            "properties":{
+                "version": "12.0",
+                "minimalTlsVersion": "1.2",
+                "publicNetworkAccess": "Enabled",
+                "administrators":{
+                    "administratorType": "activeDirectory",
+                    "principalType": "Application",
+                    "tenantId": "[subscription().tenantId]",
+                    "azureADOnlyAuthentication": true,
+                    "login": "[parameters('managedIdentityName')]",
+                    "sid": "[parameters('managedIdentityObjectId')]"
+
+                }
+            }
+        }
+    ],
+    "outputs": {}
+}
