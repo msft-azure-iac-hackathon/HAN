@@ -22,6 +22,9 @@
         },
         "managedIdentityName":{
             "value": "mi-we-han"
+        },
+        "DBConnectionStringSecretURI":{
+            "value": "https://akv-we-han.vault.azure.net/secrets/DatabaseConnectionString/"
         }
     }
 }

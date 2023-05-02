@@ -55,10 +55,18 @@
             "metadata": {
                 "description": "Name of the Managed Identity"
             }
+        },
+        "DBConnectionStringSecretURI": {
+            "type": "string",
+            "metadata": {
+                "description": "Secret URI of the DB Connection String"
+            }
         }
     },
     "functions": [],
-    "variables": {},
+    "variables": {
+        "DBConnectionString": "[concat('@Microsoft.KeyVault(SecretUri=', parameters('DBConnectionStringSecretURI'), ')')]"
+    },
     "resources": [
         {
             "type": "Microsoft.ManagedIdentity/userAssignedIdentities",
@@ -138,7 +146,7 @@
                     "connectionStrings": [
                         {
                             "name": "DatabaseConnection",
-                            "connectionString": "blablabla",
+                            "connectionString": "[variables('DBConnectionString')]",
                             "type": "SQLAzure"
                         }
                     ],
