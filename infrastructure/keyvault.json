@@ -34,5 +34,10 @@
             }
         }
     ],
-    "outputs": {}
+    "outputs": {
+        "keyVaultId": {
+            "type": "string",
+            "value": "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+        }
+    }
 }
