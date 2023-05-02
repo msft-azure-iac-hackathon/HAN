@@ -64,3 +64,4 @@ jobs:
             infrastructure/appservice.params.json
             appInsightsInstrumentationKey="${{ steps.logging.outputs.applicationInsightsInstrumentationKey }}"
             appInsightsConnectionString="${{ steps.logging.outputs.applicationInsightsConnectionString }}"
+            keyVaultId="${{ steps.keyVault.outputs.keyVaultId }}"

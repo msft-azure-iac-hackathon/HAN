@@ -43,6 +43,12 @@
             "metadata": {
                 "description": "SKU of the App Service"
             }
+        },
+        "keyVaultId": {
+            "type": "string",
+            "metadata": {
+                "description": "Id of the Key Vault"
+            }
         }
     },
     "functions": [],
