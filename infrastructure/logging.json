@@ -1,0 +1,31 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "logAnalyticsName": {
+            "type": "string",
+            "defaultValue": "logAnalyticsWorkspace1",
+            "metadata": {
+                "description": "Name of the Log Analytics Workspace"
+            }
+        }
+    },
+    "functions": [],
+    "variables": {},
+    "resources": [
+        {
+            "name": "parameters('logAnalyticsName')",
+            "type": "Microsoft.OperationalInsights/workspaces",
+            "apiVersion": "2021-12-01-preview",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "sku": {
+                    "name": "pergb2018"
+                },
+                "publicNetworkAccessForIngestion": "Enabled",
+                "publicNetworkAccessForQuery": "Enabled"
+            }
+        }
+    ],
+    "outputs": {}
+}

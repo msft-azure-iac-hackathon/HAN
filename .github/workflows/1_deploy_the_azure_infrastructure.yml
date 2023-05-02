@@ -30,3 +30,13 @@ jobs:
           subscriptionId: ${{ vars.SUBSCRIPTION_ID }}
           template: infrastructure/resourceGroup.json
           parameters: infrastructure/resourceGroup.params.json
+
+      - uses: azure/arm-deploy@v1 
+        name: Create the Logging Infrastructure
+        id: logging
+        with:
+          scope: resourcegroup
+          region: westeurope
+          resourceGroupName: ${{ steps.resourceGroup.outputs.resourceGroupName }}
+          template: infrastructure/logging.json
+          parameters: infrastructure/logging.params.json
