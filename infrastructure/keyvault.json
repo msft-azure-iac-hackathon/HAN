@@ -20,6 +20,7 @@
                 "enableRbacAuthorization": true,
                 "publicNetworkAccess": "Enabled",
                 "enableSoftDelete": false,
+                "tenantId": "[subscription().tenantId]",
                 "networkAcls": {
                     "defaultAction": "allow",
                     "bypass": "AzureServices",
