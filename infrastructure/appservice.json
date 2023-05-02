@@ -104,11 +104,18 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]"
             ],
+            "identity": {
+                "type": "SystemAssigned, UserAssigned",
+                "userAssignedIdentities": {
+                    "[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('managedIdentityName'))]": {}
+                }
+            },
             "properties": {
                 "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlanName'))]",
                 "clientAffinityEnabled": false,
                 "httpsOnly": true,
                 "publicNetworkAccess": "Enabled",
+                "keyVaultReferenceIdentity":"[resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', parameters('managedIdentityName'))]",
                 "siteConfig": {
                     "appSettings": [
                         {
@@ -126,6 +133,13 @@
                         {
                             "name": "XDT_MicrosoftApplicationInsights_Mode",
                             "value": "Recommended"
+                        }
+                    ],
+                    "connectionStrings": [
+                        {
+                            "name": "DatabaseConnection",
+                            "connectionString": "blablabla",
+                            "type": "SQLAzure"
                         }
                     ],
                     "linuxFxVersion": "[parameters('linuxFxVersion')]",
