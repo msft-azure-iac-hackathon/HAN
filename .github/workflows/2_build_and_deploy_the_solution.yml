@@ -1,0 +1,14 @@
+name: Build and Deploy the Solution
+
+on:
+  workflow_call:
+
+jobs:
+  core-infrastructure-rollout:
+    runs-on: [self-hosted, linux]
+    environment: han
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
