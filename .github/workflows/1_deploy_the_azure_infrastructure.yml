@@ -40,3 +40,16 @@ jobs:
           resourceGroupName: ${{ steps.resourceGroup.outputs.resourceGroupName }}
           template: infrastructure/logging.json
           parameters: infrastructure/logging.params.json
+      
+      - uses: azure/arm-deploy@v1 
+        name: Create the App Service
+        id: appService
+        with:
+          scope: resourcegroup
+          region: westeurope
+          resourceGroupName: ${{ steps.resourceGroup.outputs.resourceGroupName }}
+          template: infrastructure/appservice.json
+          parameters: >
+            infrastructure/appservice.params.json
+            appInsightsInstrumentationKey="${{ steps.logging.outputs.applicationInsightsInstrumentationKey }}"
+            appInsightsConnectionString="${{ steps.logging.outputs.applicationInsightsConnectionString }}"
