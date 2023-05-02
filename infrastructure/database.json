@@ -42,6 +42,30 @@
                     "login": "[parameters('sqlServerLogin')]"
                 }
             }
+        },
+        {
+            "type": "Microsoft.Sql/servers/databases",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2022-05-01-preview",
+            "name": "[concat(parameters('sqlServerName'), '/', parameters('sqlDatabaseName'))]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
+            ],
+            "sku": {
+                "name": "GP_S_Gen5_1",
+                "tier": "GeneralPurpose"
+            },
+            "properties": {
+                "collation": "SQL_Latin1_General_CP1_CI_AS",
+                "autoPauseDelay": 60,
+                "minCapacity": 0.5,
+                "zoneRedundant": false,
+                "maxSizeBytes": 34359738368,
+                "readScale": "Disabled",
+                "highAvailabilityReplicaCount": 0,
+                "requestedBackupStorageRedundancy": "Geo",
+                "isLedgerOn": false
+            }
         }
     ],
     "outputs": {}
