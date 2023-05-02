@@ -6,12 +6,13 @@ on:
 jobs:
   core-infrastructure-rollout:
     runs-on: [self-hosted, linux]
+    environment: han
     permissions:
       id-token: write
       contents: read
     steps:
       - uses: actions/checkout@v3
-      
+
       - uses: azure/login@v1
         name: Azure OIDC login
         with:         
