@@ -20,3 +20,13 @@ jobs:
           client-id: ${{ secrets.CLIENT_ID }}
           allow-no-subscriptions: true
           enable-AzPSSession: true
+      
+      - uses: azure/arm-deploy@v1
+        name: Create the Resource Group for the Infrastructure
+        id: resourceGroup
+        with:
+          scope: subscription
+          region: westeurope
+          subscriptionId: ${{ vars.SUBSCRIPTION_ID }}
+          template: infrastructure/resourceGroup.json
+          parameters: infrastructure/resourceGroup.params.json
