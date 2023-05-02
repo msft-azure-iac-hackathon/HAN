@@ -40,6 +40,17 @@ jobs:
           resourceGroupName: ${{ steps.resourceGroup.outputs.resourceGroupName }}
           template: infrastructure/logging.json
           parameters: infrastructure/logging.params.json
+
+      - uses: azure/arm-deploy@v1 
+        name: Create the Key Vault
+        id: keyVault
+        with:
+          scope: resourcegroup
+          region: westeurope
+          resourceGroupName: ${{ steps.resourceGroup.outputs.resourceGroupName }}
+          template: infrastructure/keyvault.json
+          parameters: >
+            infrastructure/keyvault.params.json
       
       - uses: azure/arm-deploy@v1 
         name: Create the App Service
