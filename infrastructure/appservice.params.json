@@ -19,6 +19,9 @@
                 "Tier": "Standard",
                 "Name": "S1"
             }
+        },
+        "managedIdentityName":{
+            "value": "mi-we-han"
         }
     }
 }
