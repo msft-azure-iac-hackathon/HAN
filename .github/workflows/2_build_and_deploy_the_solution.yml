@@ -21,4 +21,4 @@ jobs:
         run: dotnet build WebApi --configuration Release
       
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/webapi
+        run: dotnet publish WebApi -c Release -o ${{env.DOTNET_ROOT}}/webapi
