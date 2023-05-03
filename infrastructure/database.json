@@ -76,7 +76,7 @@
                 "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlServerName'), parameters('sqlDatabaseName'))]"
             ],
             "properties": {
-                "value": "[concat('Server=tcp:', reference(resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('sqlDatabaseName'), ';Persist Security Info=False;User ID=', parameters('sqlServerLogin'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication=\"Active Directory Integrated\";')]",
+                "value": "[concat('Server=tcp:', reference(resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('sqlDatabaseName'), ';Persist Security Info=False;User ID=', parameters('sqlServerAdminObjectId'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication=\"Active Directory Default\";')]",
                 "attributes": {
                     "enabled": true
                 }
