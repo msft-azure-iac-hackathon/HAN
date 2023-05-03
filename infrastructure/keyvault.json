@@ -38,6 +38,9 @@
         "keyVaultId": {
             "type": "string",
             "value": "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
-        }
+        },
+        "keyVaultName": {
+            "type": "string",
+            "value": "[parameters('keyVaultName')]"}
     }
 }

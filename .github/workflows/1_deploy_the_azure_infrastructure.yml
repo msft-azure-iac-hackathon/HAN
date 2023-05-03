@@ -76,6 +76,6 @@ jobs:
           template: infrastructure/database.json
           parameters: >
             infrastructure/database.params.json
-            keyVaultId="${{ steps.keyVault.outputs.keyVaultId }}",
+            keyVaultName="${{ steps.keyVault.outputs.keyVaultName }}",
             sqlServerAdminObjectId="${{ steps.appService.outputs.appServiceSystemAssignedIdentity }}"
             sqlServerLogin=${{ steps.appservice.outputs.appServiceName }}
