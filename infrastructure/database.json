@@ -71,12 +71,11 @@
             "type": "Microsoft.KeyVault/vaults/secrets",
             "location": "[resourceGroup().location]",
             "apiVersion": "2023-02-01",
-            "name": "[concat(parameters('keyVaultName'), '/', 'DatabaseConnection')]",
+            "name": "[concat(parameters('keyVaultName'), '/', 'DatabaseConnectionString')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlServerName'), parameters('sqlDatabaseName'))]"
             ],
             "properties": {
-                "contentType": "text/plain",
                 "value": "[concat('Server=tcp:', reference(resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('sqlDatabaseName'), ';Persist Security Info=False;User ID=', parameters('sqlServerLogin'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication=Active Directory Integrated;')]",
                 "attributes": {
                     "enabled": true
