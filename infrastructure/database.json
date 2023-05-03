@@ -14,10 +14,10 @@
         "sqlServerAdminObjectId": {
             "type": "string"
         },
-        "keyVaultId": {
+        "keyVaultName": {
             "type": "string",
             "metadata": {
-                "description": "Id of the Key Vault"
+                "description": "Name of the Key Vault"
             }
         }
     },
@@ -71,7 +71,7 @@
             "type": "Microsoft.KeyVault/vaults/secrets",
             "location": "[resourceGroup().location]",
             "apiVersion": "'2022-07-01",
-            "name": "[concat(parameters('keyVaultId'), '/', 'DatabaseConnection')]",
+            "name": "[concat(parameters('keyVaultName'), '/', 'DatabaseConnection')]",
             "dependsOn": [
                 "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlServerName'), parameters('sqlDatabaseName'))]"
             ],
