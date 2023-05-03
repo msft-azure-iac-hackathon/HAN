@@ -10,9 +10,12 @@ namespace WebApi.Controllers
         private readonly ILogger<ConfigController> _logger;
         private readonly BookstoreDbContext _bookstoreDbContext;
 
-        public ConfigController(ILogger<ConfigController> logger)
+        public ConfigController(
+            ILogger<ConfigController> logger,
+            BookstoreDbContext bookstoreDbContext)
         {
             _logger = logger;
+            _bookstoreDbContext = bookstoreDbContext;
         }
 
         [HttpGet]
