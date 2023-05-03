@@ -8,7 +8,7 @@ jobs:
   deploy_the_azure_infrastructure:
       uses: ./.github/workflows/1_deploy_the_azure_infrastructure.yml
       secrets: inherit
-      if: false
   build_and_deploy_the_solution:
       uses: ./.github/workflows/2_build_and_deploy_the_solution.yml
+      needs: deploy_the_azure_infrastructure
       secrets: inherit
