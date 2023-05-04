@@ -45,6 +45,14 @@
             }
         },
         {
+            "type": "Microsoft.Sql/servers/firewallRules",
+            "apiVersion": "2022-08-01-preview",
+            "name": "[concat(parameters('sqlServerName'), '/AllowAllWindowsAzureIps')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))]"
+            ]
+        },
+        {
             "type": "Microsoft.Sql/servers/databases",
             "location": "[resourceGroup().location]",
             "apiVersion": "2022-05-01-preview",
