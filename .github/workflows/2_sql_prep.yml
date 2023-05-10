@@ -2,11 +2,17 @@ name: SQL Prep
 
 on:
   workflow_call:
+    inputs:
+      connectionstring:
+        description: 'The connection string to the SQL Server'
+        required: true
+        type: string
   workflow_dispatch:
     inputs:
       connectionstring:
         description: 'The connection string to the SQL Server'
         required: true
+        type: string
 
 jobs:
   core-infrastructure-rollout:
