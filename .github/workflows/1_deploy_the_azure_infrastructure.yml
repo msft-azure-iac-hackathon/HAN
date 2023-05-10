@@ -79,3 +79,26 @@ jobs:
             keyVaultName="${{ steps.keyVault.outputs.keyVaultName }}"
             sqlServerAdminObjectId="${{ steps.appService.outputs.appServiceSystemAssignedIdentity }}"
             sqlServerLogin=${{ steps.appservice.outputs.appServiceName }}
+
+  databse-pre-configuration:
+    runs-on: [self-hosted, linux]
+    needs: core-infrastructure-rollout
+    environment: han
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: azure/login@v1
+        name: Azure OIDC login
+        with:         
+          tenant-id: ${{ secrets.TENANT_ID }}
+          client-id: ${{ secrets.CLIENT_ID }}
+          allow-no-subscriptions: true
+          enable-AzPSSession: true
+    
+      - uses: azure/sql-action@v2.1
+        with:
+          connection-string: ${{ job.core-infrastructure-rollout.outputs.connectionString }}
+          path: sql/initialconfig.sql
