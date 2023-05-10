@@ -77,10 +77,5 @@ jobs:
           parameters: >
             infrastructure/database.params.json
             keyVaultName="${{ steps.keyVault.outputs.keyVaultName }}"
-            sqlServerAdminObjectId=${{ secrets.CLIENT_ID }}
-            sqlServerLogin=${{ vars.CLIENT_NAME }}
-      
-      - uses: azure/sql-action@v2.1
-        with:
-          connection-string: ${{ steps.database.outputs.connectionString }}
-          path: sql/initialconfig.sql
+            sqlServerAdminObjectId="${{ steps.appService.outputs.appServiceSystemAssignedIdentity }}"
+            sqlServerLogin=${{ steps.appservice.outputs.appServiceName }}
