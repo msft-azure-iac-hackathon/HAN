@@ -79,6 +79,8 @@ jobs:
             keyVaultName="${{ steps.keyVault.outputs.keyVaultName }}"
             sqlServerAdminObjectId="${{ steps.appService.outputs.appServiceSystemAssignedIdentity }}"
             sqlServerLogin=${{ steps.appservice.outputs.appServiceName }}
+    outputs:
+      dbconnectionstring: ${{ steps.database.outputs.connectionString }}
 
   databse-pre-configuration:
     runs-on: [self-hosted, linux]
@@ -100,5 +102,5 @@ jobs:
     
       - uses: azure/sql-action@v2.1
         with:
-          connection-string: ${{ job.core-infrastructure-rollout.outputs.connectionString }}
+          connection-string: ${{ needs.core-infrastructure-rollout.outputs.dbconnectionstring }}
           path: sql/initialconfig.sql
