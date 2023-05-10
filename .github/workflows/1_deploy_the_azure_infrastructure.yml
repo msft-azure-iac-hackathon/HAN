@@ -77,8 +77,8 @@ jobs:
           parameters: >
             infrastructure/database.params.json
             keyVaultName="${{ steps.keyVault.outputs.keyVaultName }}"
-            sqlServerAdminObjectId="${{ steps.appService.outputs.appServiceSystemAssignedIdentity }}"
-            sqlServerLogin=${{ steps.appservice.outputs.appServiceName }}
+            sqlServerAdminObjectId="a2d86817-a2e5-4c69-ae44-ebc7af60e7fb"
+            sqlServerLogin="GitHub"
     outputs:
       dbconnectionstring: ${{ steps.database.outputs.connectionString }}
 
