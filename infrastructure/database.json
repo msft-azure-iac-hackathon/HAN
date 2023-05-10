@@ -99,7 +99,7 @@
     "outputs": {
         "connectionString": {
             "type": "string",
-            "value": "[concat('Server=tcp:', reference(resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('sqlDatabaseName'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication=Active Directory Default;')]"
+            "value": "[concat('Server=tcp:', reference(resourceId('Microsoft.Sql/servers', parameters('sqlServerName'))).fullyQualifiedDomainName, ',1433;Initial Catalog=', parameters('sqlDatabaseName'), ';MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Authentication=Active Directory Integrated;')]"
         }
     }
 }
