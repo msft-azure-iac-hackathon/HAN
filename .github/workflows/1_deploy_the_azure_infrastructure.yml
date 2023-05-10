@@ -97,7 +97,7 @@ jobs:
         with:         
           tenant-id: ${{ secrets.TENANT_ID }}
           client-id: ${{ secrets.CLIENT_ID }}
-          allow-no-subscriptions: true
+          subscription-id: ${{ vars.SUBSCRIPTION_ID }}
           enable-AzPSSession: true
     
       - uses: azure/sql-action@v2.1
