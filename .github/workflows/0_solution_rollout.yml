@@ -8,7 +8,13 @@ jobs:
   deploy_the_azure_infrastructure:
       uses: ./.github/workflows/1_deploy_the_azure_infrastructure.yml
       secrets: inherit
+  sql_prep:
+      uses: ./.github/workflows/2_sql_prep.yml
+      needs: deploy_the_azure_infrastructure
+      secrets: inherit
+      with:
+        connectionstring: ${{ needs.deploy_the_azure_infrastructure.outputs.connectionstring }}
   build_and_deploy_the_solution:
-      uses: ./.github/workflows/2_build_and_deploy_the_solution.yml
+      uses: ./.github/workflows/3_build_and_deploy_the_solution.yml
       needs: deploy_the_azure_infrastructure
       secrets: inherit

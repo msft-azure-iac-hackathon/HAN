@@ -2,6 +2,9 @@ name: Deploy the Azure Infrastructure
 
 on:
   workflow_call:
+    outputs:
+      connectionstring: 
+        value: ${{ jobs.core-infrastructure-rollout.outputs.connectionstring }}
 
 jobs:
   core-infrastructure-rollout:
@@ -80,27 +83,4 @@ jobs:
             sqlServerAdminObjectId="a2d86817-a2e5-4c69-ae44-ebc7af60e7fb"
             sqlServerLogin="GitHub"
     outputs:
-      dbconnectionstring: ${{ steps.database.outputs.connectionString }}
-
-  databse-pre-configuration:
-    runs-on: [self-hosted, linux]
-    needs: core-infrastructure-rollout
-    environment: han
-    permissions:
-      id-token: write
-      contents: read
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: azure/login@v1
-        name: Azure OIDC login
-        with:         
-          tenant-id: ${{ secrets.TENANT_ID }}
-          client-id: ${{ secrets.CLIENT_ID }}
-          subscription-id: ${{ vars.SUBSCRIPTION_ID }}
-          enable-AzPSSession: true
-    
-      - uses: azure/sql-action@v2.1
-        with:
-          connection-string: ${{ needs.core-infrastructure-rollout.outputs.dbconnectionstring }}
-          path: sql/initialconfig.sql
+      connectionstring: ${{ steps.database.outputs.connectionString }}
