@@ -16,7 +16,7 @@ on:
 
 jobs:
   core-infrastructure-rollout:
-    runs-on: [self-hosted, linux]
+    runs-on: [ubuntu-latest]
     environment: han
     permissions:
       id-token: write
