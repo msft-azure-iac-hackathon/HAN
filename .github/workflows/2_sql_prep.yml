@@ -15,7 +15,7 @@ on:
         type: string
 
 jobs:
-  core-infrastructure-rollout:
+  allow-app-said-to-run-sql-scripts:
     runs-on: [ubuntu-latest]
     environment: han
     permissions:
